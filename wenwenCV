@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>個人履歷 | Resume</title>
+
+  <!-- Google Fonts：標題用 Playfair Display，內文用 Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    /* ── Tailwind 擴充設定 ── */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage: '#90EE90',       /* 草綠主色 */
+            'sage-dark': '#6ac96a',/* 深草綠（hover） */
+            'sage-pale': '#f0fdf0',/* 極淡草綠（背景裝飾） */
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ════════════════════════════════
+       全域基底
+    ════════════════════════════════ */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+
+    /* ── 導航欄底線滑動效果 ── */
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background: #90EE90;
+      transition: width .3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+
+    /* ── 卡片懸停微升起 ── */
+    .hover-lift {
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.08);
+    }
+
+    /* ── 進度條動畫 ── */
+    .skill-bar-fill {
+      width: 0%;
+      transition: width 1.2s cubic-bezier(.25,.46,.45,.94);
+    }
+    .skill-bar-fill.animated { width: var(--target-width); }
+
+    /* ── Tab 切換 ── */
+    .tab-btn {
+      border-bottom: 3px solid transparent;
+      transition: color .25s, border-color .25s, background .25s;
+    }
+    .tab-btn.active {
+      color: #1a1a1a;
+      border-color: #90EE90;
+      font-weight: 700;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── 裝飾圓形（背景點綴） ── */
+    .deco-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: .12;
+    }
+
+    /* ── Section 標題底線裝飾 ── */
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 48px; height: 4px;
+      background: #90EE90;
+      margin-top: 10px;
+      border-radius: 2px;
+    }
+
+    /* ── 時間軸 ── */
+    .timeline-item { position: relative; padding-left: 24px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 10px; height: 10px;
+      background: #90EE90;
+      border-radius: 50%;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 18px;
+      width: 2px; height: calc(100% + 8px);
+      background: #e5e7eb;
+    }
+    .timeline-item:last-child::after { display: none; }
+
+    /* ── 標籤（tag） ── */
+    .tag {
+      display: inline-block;
+      background: #f0fdf0;
+      color: #3a8a3a;
+      border: 1px solid #c6f6c6;
+      border-radius: 999px;
+      padding: 2px 12px;
+      font-size: .75rem;
+      font-weight: 500;
+    }
+
+    /* ── Scroll-in 動畫 ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── 漢堡選單動畫 ── */
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    #mobile-menu.open { max-height: 300px; }
+  </style>
+</head>
+
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     導航欄 (Sticky Navbar)
+════════════════════════════════════════════════════════ -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo / 姓名 -->
+      <a href="#hero" class="font-display text-xl font-black tracking-tight text-gray-900">
+        王<span class="text-sage">小明</span>
+      </a>
+
+      <!-- 桌機版連結 -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#about"      class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">關於我</a>
+        <a href="#skills"     class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">技能</a>
+        <a href="#experience" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">經歷</a>
+        <a href="mailto:hello@example.com"
+           class="ml-4 px-5 py-2 rounded-full bg-sage text-white text-sm font-medium hover:bg-sage-dark transition-colors duration-200">
+          聯絡我
+        </a>
+      </nav>
+
+      <!-- 手機版漢堡 -->
+      <button id="menu-toggle" class="md:hidden p-2 rounded-lg hover:bg-gray-100" aria-label="開啟選單">
+        <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 手機版選單 -->
+  <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100">
+    <nav class="flex flex-col px-6 py-4 gap-4">
+      <a href="#about"      class="text-sm font-medium text-gray-700 hover:text-sage" onclick="closeMenu()">關於我</a>
+      <a href="#skills"     class="text-sm font-medium text-gray-700 hover:text-sage" onclick="closeMenu()">技能</a>
+      <a href="#experience" class="text-sm font-medium text-gray-700 hover:text-sage" onclick="closeMenu()">經歷</a>
+      <a href="mailto:hello@example.com" class="text-sm font-medium text-sage">聯絡我</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════════
+     Hero 區塊（視覺入口）
+════════════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+
+  <!-- 背景裝飾圓 -->
+  <div class="deco-circle bg-sage w-96 h-96 -top-20 -right-20"></div>
+  <div class="deco-circle bg-sage w-64 h-64 bottom-10 left-10"></div>
+
+  <div class="max-w-5xl mx-auto px-6 w-full py-24">
+    <p class="text-sage font-medium tracking-widest text-sm uppercase mb-4 reveal">你好，我是</p>
+    <h1 class="font-display text-6xl md:text-8xl font-black leading-none text-gray-900 mb-6 reveal" style="transition-delay:.1s">
+      王小明
+    </h1>
+    <p class="text-xl md:text-2xl font-light text-gray-500 max-w-xl mb-10 reveal" style="transition-delay:.2s">
+      新聞工作者 · 平面設計師 · 影像創作者<br/>
+      <span class="text-gray-400 text-base">用視覺語言，說有溫度的故事。</span>
+    </p>
+    <div class="flex flex-wrap gap-4 reveal" style="transition-delay:.3s">
+      <a href="#about" class="px-8 py-3 rounded-full bg-sage text-white font-medium hover:bg-sage-dark transition-colors shadow-md shadow-sage/30">
+        了解更多
+      </a>
+      <a href="#experience" class="px-8 py-3 rounded-full border-2 border-gray-200 text-gray-700 font-medium hover:border-sage hover:text-sage transition-colors">
+        查看作品
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     關於我 (About Me)
+════════════════════════════════════════════════════════ -->
+<section id="about" class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <!-- 標題 -->
+    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-16 reveal">關於我</h2>
+
+    <div class="grid md:grid-cols-5 gap-12 items-start">
+
+      <!-- 左側：個人照片佔位符 -->
+      <div class="md:col-span-2 reveal">
+        <div class="relative">
+          <!-- 照片佔位符：圓角正方形 -->
+          <div class="w-full aspect-square rounded-3xl bg-sage-pale border-2 border-sage/30 flex flex-col items-center justify-center gap-3 overflow-hidden">
+            <!-- 人物剪影 SVG -->
+            <svg class="w-32 h-32 text-sage/60" viewBox="0 0 100 100" fill="currentColor">
+              <circle cx="50" cy="35" r="18"/>
+              <path d="M15 90 C15 65 85 65 85 90 Z"/>
+            </svg>
+            <p class="text-sage/70 text-sm font-medium">個人照片</p>
+          </div>
+          <!-- 裝飾框偏移效果 -->
+          <div class="absolute -bottom-3 -right-3 w-full h-full rounded-3xl border-2 border-sage/20 -z-10"></div>
+        </div>
+
+        <!-- 快速資訊卡片 -->
+        <div class="mt-8 space-y-3">
+          <div class="flex items-center gap-3 text-sm text-gray-600">
+            <span class="w-8 h-8 rounded-full bg-sage-pale flex items-center justify-center text-sage text-base">📍</span>
+            台灣・台北市
+          </div>
+          <div class="flex items-center gap-3 text-sm text-gray-600">
+            <span class="w-8 h-8 rounded-full bg-sage-pale flex items-center justify-center text-sage text-base">✉️</span>
+            hello@example.com
+          </div>
+          <div class="flex items-center gap-3 text-sm text-gray-600">
+            <span class="w-8 h-8 rounded-full bg-sage-pale flex items-center justify-center text-sage text-base">🔗</span>
+            linkedin.com/in/example
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側：自介、學歷、工作 -->
+      <div class="md:col-span-3 space-y-10">
+
+        <!-- 自我簡介 -->
+        <div class="reveal">
+          <h3 class="text-lg font-bold text-gray-900 mb-3">自我簡介</h3>
+          <p class="text-gray-600 leading-relaxed text-[15px]">
+            我是一位橫跨新聞媒體、平面設計與影像製作的跨領域創作者。擁有超過五年的媒體工作經驗，
+            擅長以設計思維包裝新聞內容，讓複雜議題以易讀、有溫度的方式傳達給大眾。
+          </p>
+          <p class="text-gray-600 leading-relaxed text-[15px] mt-3">
+            熱愛說故事，相信好的視覺敘事能夠打破語言與文化的隔閡。持續探索數位敘事與互動媒體的邊界。
+          </p>
+        </div>
+
+        <!-- 學歷 -->
+        <div class="reveal">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">學歷</h3>
+          <div class="space-y-4">
+            <div class="timeline-item pb-4">
+              <p class="font-semibold text-gray-900 text-sm">國立政治大學・新聞研究所</p>
+              <p class="text-gray-500 text-xs mt-1">碩士學位・2019 – 2021</p>
+              <p class="text-gray-600 text-xs mt-1">主修數位新聞與資料視覺化</p>
+            </div>
+            <div class="timeline-item pb-4">
+              <p class="font-semibold text-gray-900 text-sm">國立臺灣大學・傳播學系</p>
+              <p class="text-gray-500 text-xs mt-1">學士學位・2015 – 2019</p>
+              <p class="text-gray-600 text-xs mt-1">主修新聞傳播，輔修視覺藝術</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 工作概要 -->
+        <div class="reveal">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">工作概要</h3>
+          <div class="space-y-4">
+            <div class="timeline-item pb-4">
+              <p class="font-semibold text-gray-900 text-sm">資深記者・《XXX 媒體》</p>
+              <p class="text-gray-500 text-xs mt-1">2021 – 至今</p>
+              <p class="text-gray-600 text-xs mt-1">負責深度調查報導，主持視覺專題企劃。</p>
+            </div>
+            <div class="timeline-item pb-4">
+              <p class="font-semibold text-gray-900 text-sm">平面設計師・YYY 設計工作室</p>
+              <p class="text-gray-500 text-xs mt-1">2019 – 2021</p>
+              <p class="text-gray-600 text-xs mt-1">品牌識別、出版品設計與社群視覺規劃。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     技能 (Skills)
+════════════════════════════════════════════════════════ -->
+<section id="skills" class="py-24 bg-gray-50/60">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-16 reveal">技能</h2>
+
+    <!-- 技能網格：2欄（手機 1欄） -->
+    <div class="grid md:grid-cols-2 gap-x-16 gap-y-8" id="skills-grid">
+
+      <!-- 技能項目：name / level(%) -->
+      <!-- 以 data 屬性儲存目標寬度，由 JS 觸發動畫 -->
+
+      <!-- 左欄 -->
+      <div class="space-y-7 reveal">
+        <!-- 新聞採訪與報導 -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">新聞採訪與報導</span>
+            <span class="text-xs text-gray-400 font-mono">95%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:95%"></div>
+          </div>
+        </div>
+        <!-- 資料視覺化 -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">資料視覺化</span>
+            <span class="text-xs text-gray-400 font-mono">85%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:85%"></div>
+          </div>
+        </div>
+        <!-- 平面設計 (Adobe Suite) -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">平面設計（Adobe Suite）</span>
+            <span class="text-xs text-gray-400 font-mono">90%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:90%"></div>
+          </div>
+        </div>
+        <!-- 社群媒體行銷 -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">社群媒體行銷</span>
+            <span class="text-xs text-gray-400 font-mono">80%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右欄 -->
+      <div class="space-y-7 reveal" style="transition-delay:.15s">
+        <!-- 影片剪輯 (Premiere) -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">影片剪輯（Premiere Pro）</span>
+            <span class="text-xs text-gray-400 font-mono">88%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:88%"></div>
+          </div>
+        </div>
+        <!-- 攝影與後製 -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">攝影與後製（Lightroom）</span>
+            <span class="text-xs text-gray-400 font-mono">82%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:82%"></div>
+          </div>
+        </div>
+        <!-- 文案撰寫 -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">文案撰寫與品牌敘事</span>
+            <span class="text-xs text-gray-400 font-mono">92%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:92%"></div>
+          </div>
+        </div>
+        <!-- 專案管理 -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-semibold text-gray-800">專案管理與團隊協作</span>
+            <span class="text-xs text-gray-400 font-mono">78%</span>
+          </div>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:78%"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 工具標籤列 -->
+    <div class="mt-12 flex flex-wrap gap-2 reveal">
+      <span class="tag">Adobe Illustrator</span>
+      <span class="tag">Adobe Photoshop</span>
+      <span class="tag">Premiere Pro</span>
+      <span class="tag">Final Cut Pro</span>
+      <span class="tag">Figma</span>
+      <span class="tag">Canva</span>
+      <span class="tag">Google Data Studio</span>
+      <span class="tag">Datawrapper</span>
+      <span class="tag">Python（基礎）</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     經歷 (Experience) — Tab 切換
+════════════════════════════════════════════════════════ -->
+<section id="experience" class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-12 reveal">經歷</h2>
+
+    <!-- Tab 選單 -->
+    <div class="flex flex-wrap gap-0 border-b border-gray-200 mb-10 reveal" role="tablist">
+      <button class="tab-btn active px-5 py-3 text-sm font-medium text-gray-500 hover:text-gray-900"
+              data-tab="project" role="tab" aria-selected="true">專案經歷</button>
+      <button class="tab-btn px-5 py-3 text-sm font-medium text-gray-500 hover:text-gray-900"
+              data-tab="news" role="tab" aria-selected="false">新聞製作</button>
+      <button class="tab-btn px-5 py-3 text-sm font-medium text-gray-500 hover:text-gray-900"
+              data-tab="design" role="tab" aria-selected="false">平面設計</button>
+      <button class="tab-btn px-5 py-3 text-sm font-medium text-gray-500 hover:text-gray-900"
+              data-tab="video" role="tab" aria-selected="false">影像製作</button>
+    </div>
+
+    <!-- ── Tab 1：專案經歷 ── -->
+    <div class="tab-content active" id="tab-project">
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🗂️</div>
+            <span class="text-xs text-gray-400">2023</span>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">氣候變遷互動報導專題</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            主導製作包含數據地圖、動態圖表的互動式長篇報導，獲當年度卓越新聞獎入圍。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag">資料視覺化</span>
+            <span class="tag">互動新聞</span>
+            <span class="tag">Datawrapper</span>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">📱</div>
+            <span class="text-xs text-gray-400">2022</span>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">NGO 品牌數位轉型計畫</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            協助非政府組織重塑品牌識別與官網設計，成功提升社群互動率 40%。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag">品牌設計</span>
+            <span class="tag">UX策略</span>
+            <span class="tag">Figma</span>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🎙️</div>
+            <span class="text-xs text-gray-400">2021</span>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Podcast 節目製作與策劃</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            擔任主持與製作人，製作 20 集深度訪談節目，累積超過 5 萬次收聽。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag">音訊製作</span>
+            <span class="tag">內容策劃</span>
+            <span class="tag">受眾經營</span>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🌐</div>
+            <span class="text-xs text-gray-400">2020</span>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">選舉數據開放平台</h3>
+          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            參與跨媒體協作，設計選舉即時資料視覺化平台，獲 1.2 萬次不重複訪客。
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag">開放資料</span>
+            <span class="tag">協作報導</span>
+            <span class="tag">D3.js</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ── Tab 2：新聞製作 ── -->
+    <div class="tab-content" id="tab-news">
+      <div class="space-y-5">
+
+        <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">📰</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-1">
+              <h3 class="font-bold text-gray-900">《消失的河流》深度調查報導</h3>
+              <span class="text-xs text-gray-400">2023</span>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              歷時六個月深入採訪台灣地下水超抽問題，結合衛星影像與政府資料佐證，獲 XXX 新聞獎最佳調查報導。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">調查報導</span><span class="tag">環境議題</span><span class="tag">資料新聞</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">📡</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-1">
+              <h3 class="font-bold text-gray-900">疫情期間第一線醫護直擊報導</h3>
+              <span class="text-xs text-gray-400">2021–2022</span>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              以文字與影像紀錄醫護人員在高壓環境下的工作日常，系列報導累積破百萬閱讀。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">現場採訪</span><span class="tag">人物特寫</span><span class="tag">攝影報導</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">🏛️</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-1">
+              <h3 class="font-bold text-gray-900">立法院財政委員會常態追蹤</h3>
+              <span class="text-xs text-gray-400">2021 – 至今</span>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              負責財政、稅務政策的長期追蹤與政策解析，提供讀者易懂的公共財政說明。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">政治新聞</span><span class="tag">政策解析</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ── Tab 3：平面設計 ── -->
+    <div class="tab-content" id="tab-design">
+      <div class="grid md:grid-cols-3 gap-5">
+
+        <article class="hover-lift rounded-2xl border border-gray-100 overflow-hidden bg-white shadow-sm">
+          <!-- 設計預覽佔位符 -->
+          <div class="aspect-video bg-gradient-to-br from-sage-pale to-sage/20 flex items-center justify-center">
+            <span class="text-4xl">🎨</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 mb-1 text-sm">獨立雜誌視覺識別</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">完整 Brand Guideline，含 Logo、排版系統與色票。</p>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 overflow-hidden bg-white shadow-sm">
+          <div class="aspect-video bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+            <span class="text-4xl">📖</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 mb-1 text-sm">年度報告書設計</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">72 頁出版品排版，資訊圖表插畫設計。</p>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 overflow-hidden bg-white shadow-sm">
+          <div class="aspect-video bg-gradient-to-br from-rose-50 to-rose-100 flex items-center justify-center">
+            <span class="text-4xl">🖼️</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 mb-1 text-sm">展覽主視覺設計</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">包含主視覺、文宣品及導覽手冊整套設計。</p>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 overflow-hidden bg-white shadow-sm">
+          <div class="aspect-video bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center">
+            <span class="text-4xl">📲</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 mb-1 text-sm">社群視覺模板系統</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">多尺寸跨平台模板，供編輯部日常使用。</p>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 overflow-hidden bg-white shadow-sm">
+          <div class="aspect-video bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
+            <span class="text-4xl">📊</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 mb-1 text-sm">資訊圖表系列</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">20+ 張新聞資訊圖表，平均每篇分享數破千。</p>
+          </div>
+        </article>
+
+        <article class="hover-lift rounded-2xl border border-gray-100 overflow-hidden bg-white shadow-sm">
+          <div class="aspect-video bg-gradient-to-br from-teal-50 to-teal-100 flex items-center justify-center">
+            <span class="text-4xl">🗓️</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-gray-900 mb-1 text-sm">公益活動視覺規劃</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">環境議題公益活動主視覺與周邊設計。</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ── Tab 4：影像製作 ── -->
+    <div class="tab-content" id="tab-video">
+      <div class="space-y-5">
+
+        <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">🎬</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-1">
+              <h3 class="font-bold text-gray-900">《城市背後》紀錄短片系列</h3>
+              <span class="text-xs text-gray-400">2022</span>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              自行企劃、拍攝、剪輯，記錄都市邊緣人物的生命故事，共 5 集，YouTube 總播放超過 30 萬次。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">紀錄片</span><span class="tag">導演</span><span class="tag">剪輯</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">📽️</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-1">
+              <h3 class="font-bold text-gray-900">媒體選舉特別節目</h3>
+              <span class="text-xs text-gray-400">2022</span>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              擔任直播節目製作統籌，協調攝影、剪接與圖控團隊，完成長達 8 小時的選舉直播。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">直播製作</span><span class="tag">節目統籌</span><span class="tag">新聞直播</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">🎞️</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-1">
+              <h3 class="font-bold text-gray-900">品牌形象影片製作</h3>
+              <span class="text-xs text-gray-400">2021 – 至今</span>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              接受 NGO、新創企業委託製作形象影片，累積 12 支完整影片作品，風格涵蓋紀實與商業風格。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">商業影片</span><span class="tag">腳本撰寫</span><span class="tag">Motion Graphics</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     Footer
+════════════════════════════════════════════════════════ -->
+<footer class="border-t border-gray-100 py-10 bg-white">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="font-display font-black text-gray-900">王<span class="text-sage">小明</span></p>
+    <p class="text-gray-400 text-sm">© 2024 王小明・保留所有權利</p>
+    <div class="flex items-center gap-5">
+      <a href="mailto:hello@example.com" class="text-gray-400 hover:text-sage text-sm transition-colors">Email</a>
+      <a href="#" class="text-gray-400 hover:text-sage text-sm transition-colors">LinkedIn</a>
+      <a href="#" class="text-gray-400 hover:text-sage text-sm transition-colors">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════
+     JavaScript：互動邏輯
+════════════════════════════════════════════════════════ -->
+<script>
+  /* ── 1. 漢堡選單切換 ── */
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen   = document.getElementById('icon-open');
+  const iconClose  = document.getElementById('icon-close');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    iconOpen.classList.toggle('hidden', isOpen);
+    iconClose.classList.toggle('hidden', !isOpen);
+  });
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+
+  /* ── 2. 導覽欄 scroll 陰影 ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('shadow-md', window.scrollY > 10);
+  });
+
+  /* ── 3. IntersectionObserver：Scroll-in 動畫 ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target); /* 只觸發一次 */
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── 4. IntersectionObserver：進度條動畫 ── */
+  const skillsSection = document.getElementById('skills-grid');
+  let barsAnimated = false;
+
+  const barObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !barsAnimated) {
+      barsAnimated = true;
+      document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.classList.add('animated'); /* 觸發 CSS transition */
+      });
+    }
+  }, { threshold: 0.3 });
+
+  barObserver.observe(skillsSection);
+
+  /* ── 5. Tab 切換邏輯 ── */
+  const tabBtns     = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.tab;
+
+      /* 更新按鈕狀態 */
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      /* 更新內容顯示 */
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+        if (content.id === `tab-${targetId}`) {
+          content.classList.add('active');
+        }
+      });
+    });
+  });
+
+  /* ── 6. 導覽列 Active 狀態（Scroll Spy） ── */
+  const sections  = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav-link');
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${entry.target.id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(sec => spyObserver.observe(sec));
+</script>
+
+</body>
+</html>
