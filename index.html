@@ -247,12 +247,8 @@
         <div class="relative">
           <!-- 照片佔位符：圓角正方形 -->
           <div class="w-full aspect-square rounded-3xl bg-sage-pale border-2 border-sage/30 flex flex-col items-center justify-center gap-3 overflow-hidden">
-            <!-- 人物剪影 SVG -->
-            <svg class="w-32 h-32 text-sage/60" viewBox="0 0 100 100" fill="currentColor">
-              <circle cx="50" cy="35" r="18"/>
-              <path d="M15 90 C15 65 85 65 85 90 Z"/>
-            </svg>
-            <p class="text-sage/70 text-sm font-medium">個人照片</p>
+            <!-- 個人照片 -->
+            <img src="picture.jpg" alt="個人照片">
           </div>
           <!-- 裝飾框偏移效果 -->
           <div class="absolute -bottom-3 -right-3 w-full h-full rounded-3xl border-2 border-sage/20 -z-10"></div>
@@ -474,25 +470,25 @@
     <div class="tab-content active" id="tab-project">
       <div class="grid md:grid-cols-2 gap-6">
 
-        <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
-          <div class="flex items-start justify-between mb-3">
-            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🗂️</div>
-            <span class="text-xs text-gray-400">2026</span>
-          </div>
-          <h3 class="font-bold text-gray-900 mb-2">115基隆青年設計跨域交流整合規劃及執行製作服務案</h3>
-          <p class="text-gray-600 text-sm leading-relaxed mb-4">
-            服務建議書撰寫、簡報製作、計畫書撰寫、前期規劃、會議進行
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">專案管理</span>
-            <span class="tag">簡報製作</span>
-            <span class="tag">團隊協作</span>
-          </div>
-        </article>
+<article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm cursor-pointer" onclick="openModal()">
+  <div class="flex items-start justify-between mb-3">
+    <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🏞️</div>
+    <span class="text-xs text-gray-400">2026</span>
+  </div>
+  <h3 class="font-bold text-gray-900 mb-2">115基隆青年設計跨域交流整合規劃及執行製作服務案</h3>
+  <p class="text-gray-600 text-sm leading-relaxed mb-4">
+    服務建議書撰寫、簡報製作、計畫書撰寫、前期規劃、會議進行
+  </p>
+  <div class="flex flex-wrap gap-2">
+    <span class="tag">專案管理</span>
+    <span class="tag">簡報製作</span>
+    <span class="tag">團隊協作</span>
+  </div>
+</article>
 
         <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
           <div class="flex items-start justify-between mb-3">
-            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">📱</div>
+            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🧧</div>
             <span class="text-xs text-gray-400">2026</span>
           </div>
           <h3 class="font-bold text-gray-900 mb-2">臺北好購 設計紅包場</h3>
@@ -508,7 +504,7 @@
 
         <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
           <div class="flex items-start justify-between mb-3">
-            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🎙️</div>
+            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🌟</div>
             <span class="text-xs text-gray-400">2025</span>
           </div>
           <h3 class="font-bold text-gray-900 mb-2">畢業製作｜《Glow Up》音樂專輯</h3>
@@ -524,7 +520,7 @@
 
         <article class="hover-lift rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
           <div class="flex items-start justify-between mb-3">
-            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🌐</div>
+            <div class="w-10 h-10 rounded-xl bg-sage-pale flex items-center justify-center text-xl">🎵</div>
             <span class="text-xs text-gray-400">2024</span>
           </div>
           <h3 class="font-bold text-gray-900 mb-2">《Spirited Away》電子音樂派對</h3>
@@ -546,50 +542,59 @@
       <div class="space-y-5">
 
         <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
-          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">📰</div>
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">🏫</div>
           <div>
             <div class="flex flex-wrap items-center gap-3 mb-1">
-              <h3 class="font-bold text-gray-900">《消失的河流》深度調查報導</h3>
-              <span class="text-xs text-gray-400">2023</span>
+              <h3 class="font-bold text-gray-900">中正E報｜《嘉義雙語教育 英文從小學起》人文專題新聞</h3>
             </div>
             <p class="text-gray-600 text-sm leading-relaxed mb-3">
-              歷時六個月深入採訪台灣地下水超抽問題，結合衛星影像與政府資料佐證，獲 XXX 新聞獎最佳調查報導。
+              臺灣「2030雙語政策」之下，嘉義市進行了一系列措施，除了引進外籍教師進入課堂外，也編撰屬於嘉義的教材，並建立雙語環境，讓孩子可以從小熟悉英語。然而，這樣的政策下仍有一些問題，如何解決困境並為孩子帶來完好的雙語教育，是嘉義市需面臨的課題。
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tag">調查報導</span><span class="tag">環境議題</span><span class="tag">資料新聞</span>
+              <span class="tag">專題新聞</span><span class="tag">雙語教育</span><span class="tag">嘉義市</span>
             </div>
+            <!-- 新增的按鈕連結 -->
+            <a href="https://youtu.be/AWv82FfDRoI?si=-1oQdPFTVjnIZRaM" target="_blank" class="text-sm font-medium text-sage-dark hover:underline flex items-center gap-1">
+            觀看新聞
+            </a>
           </div>
         </article>
 
         <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
-          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">📡</div>
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">📝</div>
           <div>
             <div class="flex flex-wrap items-center gap-3 mb-1">
-              <h3 class="font-bold text-gray-900">疫情期間第一線醫護直擊報導</h3>
-              <span class="text-xs text-gray-400">2021–2022</span>
+              <h3 class="font-bold text-gray-900">中正E報｜《獨劇特色　訴說台灣故事》人文新聞</h3>
             </div>
             <p class="text-gray-600 text-sm leading-relaxed mb-3">
-              以文字與影像紀錄醫護人員在高壓環境下的工作日常，系列報導累積破百萬閱讀。
+              在嘉義市的某個角落，有一位藝術家——蔡明璇，她結合歷史與光影戲劇，重新訴說台灣過去的故事，希望這些歷史記憶不會被世人所遺忘。除此之外，她在多年前改造了嘉義舊家，將其轉變為一個藝術空間，並時不時舉辦表演及工作坊，希望可以藉由這個空間推廣藝術。
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tag">現場採訪</span><span class="tag">人物特寫</span><span class="tag">攝影報導</span>
+              <span class="tag">現場採訪</span><span class="tag">歷史戲劇</span><span class="tag">在地藝文</span>
             </div>
+            <!-- 新增的按鈕連結 -->
+            <a href="https://youtu.be/moZ4NQHJB04?si=Mt7FZinFIQ5ucHYl" target="_blank" class="text-sm font-medium text-sage-dark hover:underline flex items-center gap-1">
+            觀看新聞
+            </a>
           </div>
         </article>
 
         <article class="hover-lift flex gap-5 rounded-2xl border border-gray-100 p-6 bg-white shadow-sm">
-          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">🏛️</div>
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sage-pale flex items-center justify-center text-2xl">🪭</div>
           <div>
             <div class="flex flex-wrap items-center gap-3 mb-1">
-              <h3 class="font-bold text-gray-900">立法院財政委員會常態追蹤</h3>
-              <span class="text-xs text-gray-400">2021 – 至今</span>
+              <h3 class="font-bold text-gray-900">中正E報｜《人間月老　媒那麼簡單》人文新聞</h3>
             </div>
             <p class="text-gray-600 text-sm leading-relaxed mb-3">
-              負責財政、稅務政策的長期追蹤與政策解析，提供讀者易懂的公共財政說明。
+              隨著時代的變遷，戀愛風氣自由、婚禮流程簡化，因此職業媒人婆的角色已逐漸減少，但在嘉義朴子仍然有一位為許多人講親事的媒人婆——黃淑晴。除了以此為職業之外，看著自己協助的新人順利結親，那開心的心情也是促使她繼續做媒的原因。
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tag">政治新聞</span><span class="tag">政策解析</span>
+              <span class="tag">現場採訪</span><span class="tag">特色文化</span>
             </div>
+            <!-- 新增的按鈕連結 -->
+            <a href="https://youtu.be/rMpnFOfaCEs?si=9mXVH-9Nuimi8eUJ" target="_blank" class="text-sm font-medium text-sage-dark hover:underline flex items-center gap-1">
+            觀看新聞
+            </a>
           </div>
         </article>
 
@@ -728,12 +733,10 @@
 ════════════════════════════════════════════════════════ -->
 <footer class="border-t border-gray-100 py-10 bg-white">
   <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="font-display font-black text-gray-900">王<span class="text-sage">小明</span></p>
-    <p class="text-gray-400 text-sm">© 2024 王小明・保留所有權利</p>
+    <p class="font-display font-black text-gray-900">王<span class="text-sage">玟蓁</span></p>
+    <p class="text-gray-400 text-sm">© 2026 林玟蓁・保留所有權利</p>
     <div class="flex items-center gap-5">
-      <a href="mailto:hello@example.com" class="text-gray-400 hover:text-sage text-sm transition-colors">Email</a>
-      <a href="#" class="text-gray-400 hover:text-sage text-sm transition-colors">LinkedIn</a>
-      <a href="#" class="text-gray-400 hover:text-sage text-sm transition-colors">Instagram</a>
+      <a href="mailto:9377199@egmail.com" class="text-gray-400 hover:text-sage text-sm transition-colors">Email</a>
     </div>
   </div>
 </footer>
@@ -836,5 +839,71 @@
   sections.forEach(sec => spyObserver.observe(sec));
 </script>
 
+  <!-- 彈出視窗 (Modal) 背景遮罩 -->
+<div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+  
+  <!-- 彈出視窗主體 -->
+  <div id="modal-content" class="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 relative transform scale-95 transition-transform duration-300">
+    
+    <!-- 右上角關閉按鈕 -->
+    <button onclick="closeModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-800 transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- 詳情頁內容 -->
+    <span class="text-sm font-medium text-sage-dark block mb-2">2026</span>
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">115基隆青年設計跨域交流整合規劃及執行製作服務案</h2>
+    
+    <div class="text-gray-700 leading-relaxed mb-8 space-y-4">
+      <p>這裡可以填寫更詳細的專案背景、執行過程或是遭遇的困難與解決方式。服務建議書撰寫、簡報製作、計畫書撰寫、前期規劃、會議進行。</p>
+      <p>具體成果：成功整合跨域資源，完成 XXX 規劃...</p>
+    </div>
+
+    <!-- 照片展示區 (使用兩欄式網格排列) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- 請將 src 替換為你的真實圖片路徑 -->
+      <img src="images/photo1.jpg" alt="專案執行照片 1" class="w-full h-auto rounded-lg border border-gray-100 object-cover aspect-video">
+      <img src="images/photo2.jpg" alt="專案執行照片 2" class="w-full h-auto rounded-lg border border-gray-100 object-cover aspect-video">
+    </div>
+    
+  </div>
+</div>
+
+  <script>
+  function openModal() {
+    const modal = document.getElementById('project-modal');
+    const content = document.getElementById('modal-content');
+    
+    // 移除隱藏屬性
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // 鎖定背景滾動
+    
+    // 延遲極短時間以觸發 CSS 動畫
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      content.classList.remove('scale-95');
+      content.classList.add('scale-100');
+    }, 10);
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('project-modal');
+    const content = document.getElementById('modal-content');
+    
+    // 播放淡出與縮小動畫
+    modal.classList.add('opacity-0');
+    content.classList.remove('scale-100');
+    content.classList.add('scale-95');
+    
+    // 等待動畫結束後隱藏元素
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // 恢復背景滾動
+    }, 300);
+  }
+</script>
+  
 </body>
 </html>
