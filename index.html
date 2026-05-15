@@ -36,14 +36,18 @@
     /* ════════════════════════════════
        全域基底
     ════════════════════════════════ */
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-      overflow-x: hidden;
-    }
+body {
+  background-color: #f4ffed;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+    radial-gradient(#d0f7ec 1px, transparent 50%),
+    radial-gradient(#baff85 0px, transparent 50%), 
+    radial-gradient(#daeba7 1px, transparent 1px); 
+  
+  background-size: 100% 100%, 100% 100%, 25px 25px;
+  background-blend-mode: overlay;
+  background-attachment: fixed;
+}
 
     /* ── 導航欄底線滑動效果 ── */
     .nav-link {
@@ -89,14 +93,6 @@
     }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-
-    /* ── 裝飾圓形（背景點綴） ── */
-    .deco-circle {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: .12;
-    }
 
     /* ── Section 標題底線裝飾 ── */
     .section-title::after {
@@ -205,10 +201,6 @@
      Hero 區塊（視覺入口）
 ════════════════════════════════════════════════════════ -->
 <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-16">
-
-  <!-- 背景裝飾圓 -->
-  <div class="deco-circle bg-sage w-96 h-96 -top-20 -right-20"></div>
-  <div class="deco-circle bg-sage w-64 h-64 bottom-10 left-10"></div>
 
   <div class="max-w-5xl mx-auto px-6 w-full py-24">
     <p class="text-sage font-medium tracking-widest text-sm uppercase mb-4 reveal">你好，我是</p>
