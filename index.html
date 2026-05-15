@@ -36,19 +36,7 @@
     /* ════════════════════════════════
        全域基底
     ════════════════════════════════ */
-body {
-  background-color: #f4ffed;
-  background-image: 
-    radial-gradient(#ffffff 1.5px, transparent 50%),
-    radial-gradient(#baff85 1.5px, transparent 50%), 
-    radial-gradient(#daeba7 1.5px, transparent 50%); 
-  
-  background-size:30px 30px;
-  background-blend-mode: overlay;
-  background-attachment: fixed;
-}
-
-/* ── 背景顆粒效果 ── */
+    /* ── 背景顆粒效果 ── */
     .noise-overlay {
   position: fixed;
   top: 0;
@@ -60,6 +48,18 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none; /* 確保滑鼠可以穿透，不影響點擊 */
   z-index: 9999; /* 蓋在最上面 */
+}
+    
+body {
+  background-color: #f4ffed;
+  background-image: 
+    radial-gradient(at 0% 0%, #ffffff 1.5px, transparent 50%),
+    radial-gradient(at 100% 25%, #baff85 1.5px, transparent 50%), 
+    radial-gradient(at 750% 65%, #daeba7 1.5px, transparent 50%); 
+  
+  background-size: 100% 100%, 100% 100%, 30px 30px;
+  background-blend-mode: overlay;
+  background-attachment: fixed;
 }
 
     /* ── 導航欄底線滑動效果 ── */
