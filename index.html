@@ -993,8 +993,8 @@ body {
     const desc = el.getAttribute('data-desc');
     const img1 = el.getAttribute('data-img1');
     const img2 = el.getAttribute('data-img2');
-    const img3 = el.getAttribute('data-img1');
-    const img4 = el.getAttribute('data-img2');
+    const img3 = el.getAttribute('data-img3');
+    const img4 = el.getAttribute('data-img4');
 
     // 填入資料到彈出視窗
     document.getElementById('modal-title').innerText = title;
@@ -1009,8 +1009,8 @@ body {
     
     if(img1) { i1.src = img1; i1.classList.remove('hidden'); } else { i1.classList.add('hidden'); }
     if(img2) { i2.src = img2; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
-    if(img3) { i2.src = img2; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
-    if(img4) { i2.src = img2; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
+    if(img3) { i2.src = img3; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
+    if(img4) { i2.src = img4; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
 
     // 顯示視窗動畫
     const modal = document.getElementById('project-modal');
