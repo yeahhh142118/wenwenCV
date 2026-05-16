@@ -506,12 +506,9 @@ body {
           data-title="畢業製作｜《Glow Up》音樂專輯"
           data-desc="《Glow Up》取自「Grow Up」的諧音，意即黑暗中的微光使我們成長，這張雙CD專輯紀錄了迷惘、掙扎、成長和夢想...<br>
           <br>
-          我們是由五位大學生組成的11:06工作室！這次專案除了音樂製作，亦包含線上宣傳、線下活動、MV拍攝、募資等各面向事務<br>
+          我們是由五位大學生組成的11:06工作室！在這次為期一年的畢業製作專案裡，我們除了音樂製作及拍攝MV之外，亦進行社群宣傳、線下音樂演出等行銷活動，同時也跟著系上的畢業製作籌備團隊至臺北及校內進行展演。<br>
           <br>
-          除了共同推動專案進行之外，身為視覺設計，我負責了任何與美術相關的項目，包含平面設計及實體設計。另外，也進行了周邊項目的發包事項。<br>
-          ．平面設計：專輯封面、海報、社群圖文、文宣設計等等<br>
-          ．實體設計：MV美術、佈展概念規劃、包裝設計、周邊設計（衣服、襪子、打火機、NFC）等等<br>
-          其他視覺作品詳見「平面設計」
+          這次專案經費是以募資的方式進行，在經由一系列的宣傳及活動後，我們的募資金額不僅成功達到原定目標$50,000，更在後續達到了$80,000的良好成果。
           "
           data-img1="1106-3.JPG"
           data-img2="1106-1.JPG"
@@ -670,7 +667,12 @@ body {
           <br>
           除了視覺設計呼應「點亮」的主題，這張專輯在包裝上也藏有巧思。透過彩色透明片的材質特性，當消費者拉開專輯時，封面圖案隨之被「點亮」，讓「Glow up」的概念不只看得見，也親手參與得了。更重要的是，這張專輯以手工包裝呈現，講求DIY的手作精神，從音樂到包裝，每個細節都由團隊親手打造，傳遞出最真誠、最有溫度的創作初心。<br>
           <br>
-          除了象徵初綻光芒的「點亮微光」版本，亦推出「完全點亮」的限量主視覺，整體畫面更為明亮，象徵微光綻放為耀眼光芒，也代表伯威與威蓁在青春年華中，傾注所有能量與故事，化為音樂，在舞台上全力綻放。
+          除了象徵初綻光芒的「點亮微光」版本，亦推出「完全點亮」的限量主視覺，整體畫面更為明亮，象徵微光綻放為耀眼光芒，也代表伯威與威蓁在青春年華中，傾注所有能量與故事，化為音樂，在舞台上全力綻放。<br>
+          <br>
+          負責項目：<br>
+          ．平面設計：專輯封面、海報、社群圖文、文宣設計等等<br>
+          ．實體設計：MV美術、佈展概念規劃、包裝設計、周邊設計及發包（衣服、襪子、打火機、NFC）等等<br>
+          其他視覺作品詳見「平面設計」
           "
           data-img1="glowup_A2海報_A.png"
           data-img2="glowup_A2海報_B.png">
@@ -775,7 +777,7 @@ body {
                 <a href="https://youtube.com/playlist?list=PLfjSeGVzJh9VlfNCK_PWoM16_Ylg6IA10&si=XC9vf3rvT7EAWVuP" target="_blank" class="text-sm font-medium text-sage-dark hover:underline flex items-center gap-1">
                 觀看影片
                 </a>
-                <a href="https://youtu.be/NMJOZgnXTJA" target="_blank" class="font-medium text-sage-dark hover:underline flex items-center gap-1">
+                <a href="https://youtu.be/NMJOZgnXTJA" target="_blank" class="text-sm font-medium text-sage-dark hover:underline flex items-center gap-1">
                 後續製作
                 </a>
               </div>
@@ -1000,9 +1002,13 @@ body {
     // 處理圖片顯示（有連結才顯示，沒連結就隱藏）
     const i1 = document.getElementById('modal-img-1');
     const i2 = document.getElementById('modal-img-2');
+    const i1 = document.getElementById('modal-img-3');
+    const i2 = document.getElementById('modal-img-4');
     
     if(img1) { i1.src = img1; i1.classList.remove('hidden'); } else { i1.classList.add('hidden'); }
     if(img2) { i2.src = img2; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
+    if(img3) { i2.src = img2; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
+    if(img4) { i2.src = img2; i2.classList.remove('hidden'); } else { i2.classList.add('hidden'); }
 
     // 顯示視窗動畫
     const modal = document.getElementById('project-modal');
