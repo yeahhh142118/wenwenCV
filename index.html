@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>林玟蓁 個人履歷 | Wen Chen Lin's Resume</title>
+  <title>林玟蓁 個人履歷| Wen Chen Lin's Resume</title>
 
   <!-- Google Fonts：標題用 Playfair Display，內文用 Noto Sans TC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,21 +35,7 @@
   <style>
     /* ════════════════════════════════
        全域基底
-    ════════════════════════════════ */
-    /* ── 背景顆粒效果 ── */
-    .noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  content: "";
-  /* 這裡使用一個極輕微的噪點圖層 */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  pointer-events: none; /* 確保滑鼠可以穿透，不影響點擊 */
-  z-index: 9999; /* 蓋在最上面 */
-}
-    
+    ════════════════════════════════ */    
 body {
   background-color: #f4ffed;
   background-image: 
@@ -212,11 +198,14 @@ body {
 <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-16">
 
   <div class="max-w-5xl mx-auto px-6 w-full py-24">
-    <h1 class="font-display text-6xl md:text-8xl font-medium tracking-widest leading-none text-gray-900 mb-6 reveal" style="transition-delay:.1s">
-      林玟蓁 Wen Chen Lin
+    <h1 class="font-sans text-6xl md:text-8xl font-medium tracking-widest leading-none text-gray-900 mb-6 reveal" style="transition-delay:.1s">
+      林玟蓁
     </h1>
+    <p class="text-xl md:text-6xl font-light tracking-widest text-gray-500 max-w-xl mb-10 reveal" style="transition-delay:.2s">
+     Wen Chen Lin
+    </p>
     <p class="text-xl md:text-2xl font-light tracking-widest text-gray-500 max-w-xl mb-10 reveal" style="transition-delay:.2s">
-      內容創作者——文字、視覺、影像<br/>
+      內容創作者——文字、視覺、影像
     </p>
     <div class="flex flex-wrap gap-4 reveal" style="transition-delay:.3s">
       <a href="#about" class="px-8 py-3 rounded-full bg-sage text-white font-medium hover:bg-sage-dark transition-colors shadow-md shadow-sage/30">
@@ -255,15 +244,15 @@ body {
 
         <!-- 快速資訊卡片 -->
         <div class="mt-8 space-y-3">
-          <div class="flex items-center gap-3 text-sm text-gray-600">
+          <div class="flex items-center tracking-wide gap-3 text-sm text-gray-600">
             <span class="w-8 h-8 rounded-full bg-sage-pale flex items-center justify-center text-sage text-base">📍</span>
             臺灣
           </div>
-          <div class="flex items-center gap-3 text-sm text-gray-600">
+          <div class="flex items-center tracking-wide gap-3 text-sm text-gray-600">
             <span class="w-8 h-8 rounded-full bg-sage-pale flex items-center justify-center text-sage text-base">✉️</span>
             9377199@gmail.com
           </div>
-          <div class="flex items-center gap-3 text-sm text-gray-600">
+          <div class="flex items-center tracking-wide gap-3 text-sm text-gray-600">
             <span class="w-8 h-8 rounded-full bg-sage-pale flex items-center justify-center text-sage text-base">📞</span>
             0906623390
           </div>
@@ -275,45 +264,45 @@ body {
 
         <!-- 自我簡介 -->
         <div class="reveal">
-          <h3 class="text-lg font-bold text-gray-900 mb-3">自我簡介</h3>
-          <p class="text-gray-600 leading-relaxed text-[15px]">
+          <h3 class="text-lg tracking-wide font-bold text-gray-900 mb-3">自我簡介</h3>
+          <p class="text-gray-600 tracking-wide leading-relaxed text-[15px]">
             我畢業於中正大學傳播學系，傳播系培養了我的思辨及創作能力，並讓我在這段期間累積了新聞製作、活動規劃、影像製作、美術設計等實務
           </p>
-          <p class="text-gray-600 leading-relaxed text-[15px] mt-3">
-            雖然不是那麼外向，但個性細心負責，朋友都說我很幽默！
+          <p class="text-gray-600 tracking-wide leading-relaxed text-[15px] mt-3">
+            不是那麼外向，但個性細心負責，朋友都說我很幽默！
           </p>
         </div>
 
         <!-- 學歷 -->
         <div class="reveal">
-          <h3 class="text-lg font-bold text-gray-900 mb-4">學歷</h3>
+          <h3 class="text-lg tracking-wide font-bold text-gray-900 mb-4">學歷</h3>
           <div class="space-y-4">
             <div class="timeline-item pb-4">
-              <p class="font-semibold text-gray-900 text-sm">國立中正大學・傳播學系</p>
-              <p class="text-gray-500 text-xs mt-1">2021 – 2025</p>
-              <p class="text-gray-600 text-xs mt-1">專案執行、新聞寫作、影像製作、美術設計</p>
+              <p class="font-semibold tracking-wide text-gray-900 text-sm">國立中正大學・傳播學系</p>
+              <p class="text-gray-500 tracking-wide text-xs mt-1">2021 – 2025</p>
+              <p class="text-gray-600 tracking-wide text-xs mt-1">專案執行、新聞寫作、影像製作、美術設計</p>
             </div>
           </div>
         </div>
 
         <!-- 工作概要 -->
         <div class="reveal">
-          <h3 class="text-lg font-bold text-gray-900 mb-4">工作概要</h3>
+          <h3 class="text-lg font-bold tracking-wide text-gray-900 mb-4">工作概要</h3>
           <div class="space-y-4">
             <div class="timeline-item pb-4">
-              <p class="font-semibold text-gray-900 text-sm">桔禾創意整合有限公司・專案企劃</p>
-              <p class="text-gray-500 text-xs mt-1">2025/11 – 2026/4</p>
-              <p class="text-gray-600 text-xs mt-1">標案計畫書撰寫、活動前期規劃、現場執行、成果報告撰寫等</p>
+              <p class="font-semibold tracking-wide text-gray-900 text-sm">桔禾創意整合有限公司・專案企劃</p>
+              <p class="text-gray-500 tracking-wide text-xs mt-1">2025/11 – 2026/4</p>
+              <p class="text-gray-600 tracking-wide text-xs mt-1">標案計畫書撰寫、活動前期規劃、現場執行、成果報告撰寫等</p>
             </div>
             <div class="timeline-item pb-4">
-              <p class="font-semibold text-gray-900 text-sm">生命樹時創美學有限公司・設計/企劃 實習生</p>
-              <p class="text-gray-500 text-xs mt-1">2024/7 – 2024/8</p>
-              <p class="text-gray-600 text-xs mt-1">平面設計、活動主視覺周邊文宣設計、企劃書撰寫、活動現場執行</p>
+              <p class="font-semibold tracking-wide text-gray-900 text-sm">生命樹時創美學有限公司・設計/企劃 實習生</p>
+              <p class="text-gray-500 tracking-wide text-xs mt-1">2024/7 – 2024/8</p>
+              <p class="text-gray-600 tracking-wide text-xs mt-1">平面設計、活動主視覺周邊文宣設計、企劃書撰寫、活動現場執行</p>
             </div>
             <div class="timeline-item pb-4">
-              <p class="font-semibold text-gray-900 text-sm">彰化縣和美鎮南佃社區發展協會・行銷企劃 實習生</p>
-              <p class="text-gray-500 text-xs mt-1">2023/7 – 2023/8</p>
-              <p class="text-gray-600 text-xs mt-1">影片企劃執行（拍攝、剪輯）、活動執行、協助社區事務進行、文宣製作</p>
+              <p class="font-semibold tracking-wide text-gray-900 text-sm">彰化縣和美鎮南佃社區發展協會・行銷企劃 實習生</p>
+              <p class="text-gray-500 tracking-wide text-xs mt-1">2023/7 – 2023/8</p>
+              <p class="text-gray-600 tracking-wide text-xs mt-1">影片企劃執行（拍攝、剪輯）、活動執行、協助社區事務進行、文宣製作</p>
             </div>            
           </div>
         </div>
@@ -330,7 +319,7 @@ body {
 <section id="skills" class="py-24 bg-gray-50/60">
   <div class="max-w-5xl mx-auto px-6">
 
-    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-16 reveal">Skills</h2>
+    <h2 class="font-light text-4xl font-black text-gray-900 section-title mb-16 reveal">Skills</h2>
 
     <!-- 技能網格：2欄（手機 1欄） -->
     <div class="grid md:grid-cols-2 gap-x-16 gap-y-8" id="skills-grid">
@@ -428,7 +417,7 @@ body {
 <section id="experience" class="py-24 bg-white">
   <div class="max-w-5xl mx-auto px-6">
 
-    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-12 reveal">Experience and Portfolio</h2>
+    <h2 class="font-light text-4xl font-black text-gray-900 section-title mb-12 reveal">Experience and Portfolio</h2>
 
     <!-- Tab 選單 -->
     <div class="flex flex-wrap gap-0 border-b border-gray-200 mb-10 reveal" role="tablist">
