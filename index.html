@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>個人履歷 | Resume</title>
+  <title>林玟蓁 個人履歷 | Wen Chen Lin's Resume</title>
 
   <!-- Google Fonts：標題用 Playfair Display，內文用 Noto Sans TC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,7 +72,7 @@ body {
       position: absolute;
       left: 0; bottom: 0;
       width: 0; height: 2px;
-      background: #90EE90;
+      background: #b7db7d;
       transition: width .3s ease;
     }
     .nav-link:hover::after,
@@ -184,9 +184,6 @@ body {
         <a href="#about"      class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">關於我</a>
         <a href="#skills"     class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">技能</a>
         <a href="#experience" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">經歷</a>
-        <a href="mailto:hello@example.com"
-           class="ml-4 px-5 py-2 rounded-full bg-sage text-white text-sm font-medium hover:bg-sage-dark transition-colors duration-200">
-          聯絡我
         </a>
       </nav>
 
@@ -204,7 +201,6 @@ body {
       <a href="#about"      class="text-sm font-medium text-gray-700 hover:text-sage" onclick="closeMenu()">關於我</a>
       <a href="#skills"     class="text-sm font-medium text-gray-700 hover:text-sage" onclick="closeMenu()">技能</a>
       <a href="#experience" class="text-sm font-medium text-gray-700 hover:text-sage" onclick="closeMenu()">經歷</a>
-      <a href="mailto:hello@example.com" class="text-sm font-medium text-sage">聯絡我</a>
     </nav>
   </div>
 </header>
@@ -216,13 +212,11 @@ body {
 <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-16">
 
   <div class="max-w-5xl mx-auto px-6 w-full py-24">
-    <p class="text-sage font-medium tracking-widest text-sm uppercase mb-4 reveal">你好，我是</p>
-    <h1 class="font-display text-6xl md:text-8xl font-black leading-none text-gray-900 mb-6 reveal" style="transition-delay:.1s">
-      林 玟 蓁
+    <h1 class="font-display text-6xl md:text-8xl font-medium tracking-widest leading-none text-gray-900 mb-6 reveal" style="transition-delay:.1s">
+      林玟蓁 Wen Chen Lin
     </h1>
-    <p class="text-xl md:text-2xl font-light text-gray-500 max-w-xl mb-10 reveal" style="transition-delay:.2s">
-      內容創作者 專案企劃<br/>
-      <span class="text-gray-400 text-base">用視覺語言，說出自己的故事。</span>
+    <p class="text-xl md:text-2xl font-light tracking-widest text-gray-500 max-w-xl mb-10 reveal" style="transition-delay:.2s">
+      內容創作者——文字、視覺、影像<br/>
     </p>
     <div class="flex flex-wrap gap-4 reveal" style="transition-delay:.3s">
       <a href="#about" class="px-8 py-3 rounded-full bg-sage text-white font-medium hover:bg-sage-dark transition-colors shadow-md shadow-sage/30">
@@ -243,7 +237,7 @@ body {
   <div class="max-w-5xl mx-auto px-6">
 
     <!-- 標題 -->
-    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-16 reveal">關 於 我</h2>
+    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-16 reveal">About Me</h2>
 
     <div class="grid md:grid-cols-5 gap-12 items-start">
 
@@ -336,7 +330,7 @@ body {
 <section id="skills" class="py-24 bg-gray-50/60">
   <div class="max-w-5xl mx-auto px-6">
 
-    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-16 reveal">技 能</h2>
+    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-16 reveal">Skills</h2>
 
     <!-- 技能網格：2欄（手機 1欄） -->
     <div class="grid md:grid-cols-2 gap-x-16 gap-y-8" id="skills-grid">
@@ -363,7 +357,7 @@ body {
             <span class="text-xs text-gray-400 font-mono">70%</span>
           </div>
           <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:85%"></div>
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:70%"></div>
           </div>
         </div>
         <!-- 平面設計 (Adobe Suite) -->
@@ -384,10 +378,10 @@ body {
         <div>
           <div class="flex justify-between items-center mb-2">
             <span class="text-sm font-semibold text-gray-800">影像拍攝與後製</span>
-            <span class="text-xs text-gray-400 font-mono">80%</span>
+            <span class="text-xs text-gray-400 font-mono">75%</span>
           </div>
           <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:80%"></div>
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:75%"></div>
           </div>
         </div>
         <!-- 文案撰寫 -->
@@ -407,7 +401,7 @@ body {
             <span class="text-xs text-gray-400 font-mono">85%</span>
           </div>
           <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:75%"></div>
+            <div class="skill-bar-fill h-full bg-sage rounded-full" style="--target-width:85%"></div>
           </div>
         </div>
       </div>
@@ -434,7 +428,7 @@ body {
 <section id="experience" class="py-24 bg-white">
   <div class="max-w-5xl mx-auto px-6">
 
-    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-12 reveal">經歷</h2>
+    <h2 class="font-display text-4xl font-black text-gray-900 section-title mb-12 reveal">Experience and Portfolio</h2>
 
     <!-- Tab 選單 -->
     <div class="flex flex-wrap gap-0 border-b border-gray-200 mb-10 reveal" role="tablist">
@@ -855,11 +849,8 @@ body {
 ════════════════════════════════════════════════════════ -->
 <footer class="border-t border-gray-100 py-10 bg-white">
   <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="font-display font-black text-gray-900">林<span class="text-sage">玟蓁</span></p>
+    <p class="font-display font-black tracking-widest text-gray-900">Wen Chen Lin</span></p>
     <p class="text-gray-400 text-sm">© 2026 林玟蓁・保留所有權利</p>
-    <div class="flex items-center gap-5">
-      <a href="mailto:9377199@egmail.com" class="text-gray-400 hover:text-sage text-sm transition-colors">Email</a>
-    </div>
   </div>
 </footer>
 
